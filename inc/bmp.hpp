@@ -3,8 +3,7 @@
 #include <fstream>
 
 #pragma pack(1) // Отключить выравнивание
-struct BMPHEADER
-{
+struct BMPHEADER{
     unsigned short    Type;
     unsigned int      Size;
     unsigned short    Reserved1;
@@ -14,8 +13,7 @@ struct BMPHEADER
 #pragma pack()
 
 #pragma pack(1)
-struct BMPINFO
-{
+struct BMPINFO{
     unsigned int    Size;
     int             Width;
     int             Height;
@@ -31,15 +29,12 @@ struct BMPINFO
 #pragma pack()
 
 #pragma pack(1)
-struct Pixel
-{
+struct Pixel{
     unsigned char b;
     unsigned char g;
     unsigned char r;
 };
 #pragma pack()
-
-
 
 class BMP {
 public:
@@ -48,6 +43,8 @@ public:
 
     void readBMP(std::string name);
     void writeBMP(std::string name);
+
+    void inverseFilter();
 
 private:
     BMPHEADER m_bmpHeader;

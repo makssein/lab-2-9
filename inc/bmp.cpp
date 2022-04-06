@@ -38,10 +38,11 @@ void BMP::readBMP(std::string name) {
 }
 void BMP::writeBMP(std::string name) {
     std::ofstream out(name+".bmp", std::ios::binary);
+
     int width = m_bmpInfo.Width;
     int height = m_bmpInfo.Height;
 
-    m_bmpHeader_new.Type = 0x4D42; 
+    m_bmpHeader_new.Type = 0x4D42;
     m_bmpHeader_new.Size = 14 + 40 + (3 * width * height);
     if (width % 4 != 0)
         m_bmpHeader_new.Size += (4 - (3 * width) % 4) * height;
@@ -75,8 +76,17 @@ void BMP::writeBMP(std::string name) {
                 out.write(&c, 1);
             }
     }
+}
+
+void BMP::inverseFilter() {
+    for (int i = 0; i < m_bmpInfo.Height; i++)
+        for (int j = 0; j < m_bmpInfo.Width; j++){
+            m_pixels[i][j].b = - m_pixels[i][j].b;
+            m_pixels[i][j].r = - m_pixels[i][j].r;
+            m_pixels[i][j].g = - m_pixels[i][j].g;
 
 
+        }
 
 
 }
